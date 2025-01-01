@@ -1,22 +1,18 @@
 "use client";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import { Moon, Sun } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import Link from "next/link";
+import Image from "next/image";
+
+import ThemeSwitcher from "./theme-switcher";
 
 export default function HeaderComponent() {
-    const { setTheme } = useTheme()
+
     return (
         <>
-            <header className="container flex h-14 justify-between items-center border-b border-gray-500">
-                <span>AK</span>
+            <header className="container flex h-16 justify-between items-center border-b border-gray-500">
+                <span className="w-12 h-12 relative rounded-lg">
+                    <Image fill src="/images/logo.png" alt="anshu kumar" className="rounded-lg" />
+                </span>
                 <nav>
                     {[
                         {
@@ -35,26 +31,7 @@ export default function HeaderComponent() {
                         <Link key={i} href={item.url} className={`${i === 2 ? "" : "mr-5"}`}>{item.label}</Link>
                     ))}
                 </nav>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon">
-                            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                            <span className="sr-only">Toggle theme</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => setTheme("light")}>
-                            Light
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("dark")}>
-                            Dark
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("system")}>
-                            System
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <ThemeSwitcher />
             </header>
         </>
     )
