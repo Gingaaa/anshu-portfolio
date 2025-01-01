@@ -15,12 +15,25 @@ export default function HeaderComponent() {
     const { setTheme } = useTheme()
     return (
         <>
-            <header className="container flex h-14 justify-between items-center">
+            <header className="container flex h-14 justify-between items-center border-b border-gray-500">
                 <span>AK</span>
                 <nav>
-                    <Link href="/">Home</Link>
-                    <Link href="/about-us">About</Link>
-                    <Link href="/blog">Blog</Link>
+                    {[
+                        {
+                            url: "/",
+                            label: "Home",
+                        },
+                        {
+                            url: "/about-us",
+                            label: "About",
+                        },
+                        {
+                            url: "/blog",
+                            label: "Blog",
+                        },
+                    ].map((item, i: number) => (
+                        <Link key={i} href={item.url} className={`${i === 2 ? "" : "mr-5"}`}>{item.label}</Link>
+                    ))}
                 </nav>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
