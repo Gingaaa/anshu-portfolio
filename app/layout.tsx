@@ -4,6 +4,7 @@ import "./globals.css";
 import HeaderComponent from "@/components/header";
 import ThemeProvider from "@/components/theme-provider";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <HeaderComponent />
           {children}
           <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
