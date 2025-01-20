@@ -72,6 +72,20 @@ body {
   }
 }
 
+/* ::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background: blue;
+  border-radius: 20px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 4px;
+} */
+
 .container {
-  padding: 0 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }

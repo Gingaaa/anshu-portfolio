@@ -2,35 +2,79 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
+import {
+    Sheet,
+    SheetContent,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
 import ThemeSwitcher from "./theme-switcher";
+import { Button } from "./ui/button";
+import { IoMenu } from "react-icons/io5";
 
-export default function HeaderComponent() {
+export default function Navbar() {
 
+    const [currentPath, setCurrentPath] = useState<string | null>(null);
+    const pathName = usePathname();
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+    const closeSidebar = () => setSidebarOpen(false);
+
+    const isActive = (path: string) =>
+        currentPath === path
+            ? 'text-foreground font-semibold border-b-2 border-primary transition ease-linear'
+            : 'text-muted-foreground hover:text-foreground transition-colors transition ease-linear';
+
+    const links = [
+        { href: '/', label: 'Home' },
+        { href: '/about', label: 'About' },
+        { href: '/blog', label: 'Blog' },
+        { href: '/contact', label: 'Contact' },
+    ];
+
+    useEffect(() => {
+        setCurrentPath(pathName);
+    }, [pathName]);
     return (
         <>
-            <header className="container flex h-16 justify-between items-center border-b border-gray-500">
-                <span className="w-12 h-12 relative rounded-lg">
-                    <Image fill src="/images/logo.png" alt="anshu kumar" className="rounded-lg" />
+            <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 container flex h-16 justify-between items-center border-b border-gray-500">
+                <span className="w-9 h-9 relative rounded-lg">
+                    <Image fill src="/images/logo.png" alt="anshu kumar" className="rounded-lg invert dark:invert-0" />
                 </span>
-                <nav>
-                    {[
-                        {
-                            url: "/",
-                            label: "Home",
-                        },
-                        {
-                            url: "/about-us",
-                            label: "About",
-                        },
-                        {
-                            url: "/blog",
-                            label: "Blog",
-                        },
-                    ].map((item, i: number) => (
-                        <Link key={i} href={item.url} className={`${i === 2 ? "" : "mr-5"}`}>{item.label}</Link>
+                <nav className="hidden md:flex space-x-8 items-center">
+                    {links.map(({ href, label }) => (
+                        <Link key={href} href={href} className={`${isActive(href)} py-1 text-sm tracking-wide`}>{label}</Link>
                     ))}
                 </nav>
+                <Sheet open={isSidebarOpen} onOpenChange={setSidebarOpen}>
+                    <SheetTrigger asChild>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-9 w-9 shrink-0 md:hidden"
+                        >
+                            <IoMenu size="40px" />
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-[280px]">
+                        <SheetTitle className="hidden">Navigation</SheetTitle>
+                        <nav className="mt-6 grid gap-4">
+                            {links.map(({ href, label }) => (
+                                <Link
+                                    key={href}
+                                    href={href}
+                                    className={`block px-2 py-1 text-sm ${isActive(href)}`}
+                                    onClick={closeSidebar}
+                                >
+                                    {label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </SheetContent>
+                </Sheet>
                 <ThemeSwitcher />
             </header>
         </>

@@ -1,23 +1,35 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   async headers() {
     return [
       {
-        source: "/(.*)",
+        // Allow indexing for main pages
+        source: "/:path*",
         headers: [
           {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
+            key: "X-Robots-Tag",
+            value: "index,follow",
           },
+        ],
+      },
+      {
+        // Prevent indexing for API routes
+        source: "/api/:path*",
+        headers: [
           {
-            key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains; preload",
+            key: "X-Robots-Tag",
+            value: "noindex,nofollow",
           },
         ],
       },
     ];
   },
 };
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
 
-export default nextConfig;
+export default withMDX(nextConfig);
