@@ -12,7 +12,7 @@ export default function Home() {
   // const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
 
   return (
-    <div className="container">
+    <div className="">
       {/* Hero Section  */}
       <section className="container flex min-h-[calc(100vh-16rem)] flex-col items-center justify-center space-y-8 text-center">
         <div className="space-y-4">
@@ -21,7 +21,7 @@ export default function Home() {
           </h1>
           <p className="mx-auto max-w-[700px] text-lg text-muted-foreground sm:text-xl">
             Software Developer with a passion for building scalable and reliable
-            systems.
+            Website and App.
           </p>
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">

@@ -40,42 +40,44 @@ export default function Navbar() {
     }, [pathName]);
     return (
         <>
-            <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 container flex h-16 justify-between items-center border-b border-gray-500">
-                <span className="w-9 h-9 relative rounded-lg">
-                    <Image fill src="/images/logo.png" alt="anshu kumar" className="rounded-lg invert dark:invert-0" />
-                </span>
-                <nav className="hidden md:flex space-x-8 items-center">
-                    {links.map(({ href, label }) => (
-                        <Link key={href} href={href} className={`${isActive(href)} py-1 text-sm tracking-wide`}>{label}</Link>
-                    ))}
-                </nav>
-                <Sheet open={isSidebarOpen} onOpenChange={setSidebarOpen}>
-                    <SheetTrigger asChild>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-9 w-9 shrink-0 md:hidden"
-                        >
-                            <IoMenu size="40px" />
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="w-[280px]">
-                        <SheetTitle className="hidden">Navigation</SheetTitle>
-                        <nav className="mt-6 grid gap-4">
-                            {links.map(({ href, label }) => (
-                                <Link
-                                    key={href}
-                                    href={href}
-                                    className={`block px-2 py-1 text-sm ${isActive(href)}`}
-                                    onClick={closeSidebar}
-                                >
-                                    {label}
-                                </Link>
-                            ))}
-                        </nav>
-                    </SheetContent>
-                </Sheet>
-                <ThemeSwitcher />
+            <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 md:px-6">
+                    <span className="w-9 h-9 relative rounded-lg flex">
+                        <Image fill src="/images/logo.png" alt="anshu kumar" className="rounded-lg invert dark:invert-0" />
+                    </span>
+                    <nav className="hidden md:flex space-x-8 items-center">
+                        {links.map(({ href, label }) => (
+                            <Link key={href} href={href} className={`${isActive(href)} py-1 text-sm tracking-wide`}>{label}</Link>
+                        ))}
+                    </nav>
+                    <Sheet open={isSidebarOpen} onOpenChange={setSidebarOpen}>
+                        <SheetTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-9 w-9 shrink-0 md:hidden"
+                            >
+                                <IoMenu size="40px" />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="w-[280px]">
+                            <SheetTitle className="hidden">Navigation</SheetTitle>
+                            <nav className="mt-6 grid gap-4">
+                                {links.map(({ href, label }) => (
+                                    <Link
+                                        key={href}
+                                        href={href}
+                                        className={`block px-2 py-1 text-sm ${isActive(href)}`}
+                                        onClick={closeSidebar}
+                                    >
+                                        {label}
+                                    </Link>
+                                ))}
+                            </nav>
+                        </SheetContent>
+                    </Sheet>
+                    <ThemeSwitcher />
+                </div>
             </header>
         </>
     )
