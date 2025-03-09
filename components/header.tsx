@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -31,7 +31,8 @@ export default function Navbar() {
     const links = [
         { href: '/', label: 'Home' },
         { href: '/about', label: 'About' },
-        { href: '/blog', label: 'Blog' },
+        { href: '/work', label: 'Work' },
+        { href: '/blogs', label: 'Blog' },
         { href: '/contact', label: 'Contact' },
     ];
 

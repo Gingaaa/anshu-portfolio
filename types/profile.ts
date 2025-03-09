@@ -1,4 +1,38 @@
 // types/profile.ts
+import { JSXElementConstructor, ReactElement } from "react";
+
+
+export type MdxProject = {
+  frontmatter: {
+      title: string;
+      description: string;
+      date: string;
+      status: string;
+      tech: Array<string>;
+      featured?: boolean;
+      links: Array<{
+        name: string;
+        url: string;
+        type: string;
+      }>;
+    };
+    content: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+    slug: string;
+}
+
+export type MdxWorkExperience = {
+  frontmatter: {
+    title: string;
+    company: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+    skills: Array<string>;
+    author: string;
+  };
+  content: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  slug: string;
+}
 
 export type SocialLink = {
     platform: string;

@@ -1,5 +1,5 @@
 import { Button } from './button';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import type { SiteConfigLink } from '@/config/site';
 import { IconType } from 'react-icons';
 
