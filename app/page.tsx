@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-// import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
-// import { sortProjectsByFeatured } from "@/lib/utils";
-import { Link } from 'next-view-transitions';
+import Link from "next/link";
 import { FaBookOpen, FaGithub } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
 import { MdEmail } from "react-icons/md";

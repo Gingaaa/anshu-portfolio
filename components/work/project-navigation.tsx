@@ -1,4 +1,4 @@
-import { Link } from 'next-view-transitions';
+import Link from "next/link";
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { LuChevronLeft } from 'react-icons/lu';

@@ -6,7 +6,7 @@ import ThemeProvider from "@/components/theme-provider";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import Footer from "@/components/footer";
-import { ViewTransitions } from 'next-view-transitions'
+// import { ViewTransitions } from 'next-view-transitions'
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
+    // <ViewTransitions>
       <html lang="en">
         <body
           className={`${inter.className} antialiased`}
@@ -40,6 +40,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </ViewTransitions>
+    // {/* </ViewTransitions> */}
   );
 }
