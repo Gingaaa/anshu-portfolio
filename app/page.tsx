@@ -1,13 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
+import { getBlogs, getProjects } from "@/lib/fetchmdx";
+import { sortBlogPostsByFeatured, sortProjectsByFeatured } from "@/lib/utils";
 import Link from "next/link";
 import { FaBookOpen, FaGithub } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 
-export default function Home() {
-  // const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
+export default async function Home() {
+  const projects = await getProjects();
+  const blogs = await getBlogs();
+  const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
+  const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
 
   return (
     <div className="">
@@ -51,29 +56,29 @@ export default function Home() {
           </Button>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          {/* {featuredProjects.map((project) => ( */}
-          <Card className="flex flex-col p-6">
-            <h3 className="mb-2 text-xl font-semibold">
-              <Link
-                href={`/work/#`}
-                className="hover:text-primary"
-              >
-                fesfes
-              </Link>
-            </h3>
-            <p className="mb-4 flex-grow text-muted-foreground">
-              dsvs
-            </p>
-            <div className="space-y-4">
-              <Link
-                href={`/work/sdvsd`}
-                className="text-sm font-medium text-primary hover:text-primary/80"
-              >
-                View Project ➔
-              </Link>
-            </div>
-          </Card>
-          {/* ))} */}
+        {featuredProjects.map((project) => (
+            <Card key={project.slug} className="flex flex-col p-6">
+              <h3 className="mb-2 text-xl font-semibold">
+                <Link
+                  href={`/work/${project.slug}`}
+                  className="hover:text-primary"
+                >
+                  {project.frontmatter.title}
+                </Link>
+              </h3>
+              <p className="mb-4 flex-grow text-muted-foreground">
+                {project.frontmatter.description}
+              </p>
+              <div className="space-y-4">
+                <Link
+                  href={`/work/${project.slug}`}
+                  className="text-sm font-medium text-primary hover:text-primary/80"
+                >
+                  View Project ➔
+                </Link>
+              </div>
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -89,25 +94,25 @@ export default function Home() {
           </Button>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          {/* {recentPosts.map((post) => ( */}
-            <Card className="flex flex-col p-6">
+        {recentPosts.map((post) => (
+            <Card key={post.slug} className="flex flex-col p-6">
               <h3 className="mb-2 text-xl font-semibold">
-                <Link href="#" className="hover:text-primary">
-                 zdvsf
+                <Link href={post.slug} className="hover:text-primary">
+                  {post.frontmatter.title}
                 </Link>
               </h3>
               <p className="mb-4 flex-grow text-muted-foreground">
-                sdfvdf
+                {post.frontmatter.description}
               </p>
               {/* Read More Link */}
               <Link
-                href={`/dvsdf`}
+                href={`/blog/${post.slug}`}
                 className="text-sm font-medium text-primary hover:text-primary/80"
               >
                 Read more ➔
               </Link>
             </Card>
-          {/* ))} */}
+          ))}
         </div>
       </section>
 

@@ -1,26 +1,44 @@
 // import { Project, WorkExperience } from "@/types/profile";
-import { MdxProject, MdxWorkExperience } from "@/types/profile";
+import { MdxBlogs, MdxProject, MdxWorkExperience } from "@/types/profile";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(input: string | number): string {
-  const date = new Date(input);
-  return date.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+export function sortPosts(blog_posts: MdxBlogs[]): MdxBlogs[] {
+  return [...blog_posts].sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
+  );
 }
 
-export function sortProjectsByFeatured(projects: MdxProject[]) {
-  return [...projects].sort(
-    (a, b) => Number(b.frontmatter.featured) - Number(a.frontmatter.featured)
-  );
+export function getAllTags(blog_posts: MdxBlogs[]): Record<string, number> {
+  return blog_posts.reduce((acc, blog_post) => {
+    if (blog_post.frontmatter.published && blog_post.frontmatter.tags) {
+      blog_post.frontmatter.tags.forEach((tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+      });
+    }
+    return acc;
+  }, {} as Record<string, number>);
+}
+
+export function sortTagsByCount(tags: Record<string, number>): string[] {
+  return Object.entries(tags)
+    .sort(([, a], [, b]) => b - a)
+    .map(([tag]) => tag);
+}
+
+export function formatDate(input: string | number): string {
+  const date = new Date(input);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 export function getDuration(startDate: string, endDate?: string): string {
@@ -47,4 +65,14 @@ export function sortProjects(projects: MdxProject[]) {
       new Date(b.frontmatter.date).getTime() -
       new Date(a.frontmatter.date).getTime()
   );
+}
+
+export function sortProjectsByFeatured(projects: MdxProject[]) {
+  return [...projects].sort(
+    (a, b) => Number(b.frontmatter.featured) - Number(a.frontmatter.featured)
+  );
+}
+
+export function sortBlogPostsByFeatured(blogPosts: MdxBlogs[]) {
+  return [...blogPosts].sort((a, b) => Number(b.frontmatter.featured) - Number(a.frontmatter.featured));
 }

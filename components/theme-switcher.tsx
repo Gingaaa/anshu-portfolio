@@ -18,11 +18,11 @@ const ThemeSwitcher = () => {
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
             >
-                <div className="relative flex items-center justify-center h-full w-full transition ease-linear duration-200">
+                <div className="relative flex items-center justify-center h-full w-full transition ease-linear duration-400">
                     <IoSunnyOutline className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 </div>
 
-                <div className="absolute flex items-center justify-center inset-0 p-1.5 transition ease-linear duration-200">
+                <div className="absolute flex items-center justify-center inset-0 p-1.5 transition ease-linear duration-400">
                     <IoMoonOutline className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 </div>
             </button>

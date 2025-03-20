@@ -1,0 +1,72 @@
+/* MDX Code Blocks */
+[data-rehype-pretty-code-figure] {
+    pre {
+      @apply px-0 border-0;
+    }
+  
+    code {
+      @apply text-sm !leading-loose md:text-base border-0 p-0;
+  
+      &[data-line-numbers] {
+        counter-reset: line;
+  
+        > [data-line]::before {
+          counter-increment: line;
+          content: counter(line);
+          @apply mr-4 inline-block w-4 text-right text-gray-500;
+        }
+      }
+    }
+  
+    [data-line] {
+      @apply border-l-2 border-l-transparent px-3;
+    }
+  
+    [data-highlighted-line] {
+      background: rgba(200, 200, 255, 0.1);
+      @apply border-l-primary;
+    }
+  
+    [data-highlighted-chars] {
+      @apply rounded bg-zinc-600/50;
+      box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+    }
+  
+    [data-chars-id] {
+      @apply border-b-2 p-1 shadow-none;
+    }
+  
+    figcaption {
+      @apply text-center w-full mx-auto mt-3 mb-3 text-sm text-muted-foreground;
+      max-width: 80%;
+    }
+  
+    > div {
+      position: relative;
+  
+      &::before {
+        content: attr(data-language);
+        @apply absolute top-2 right-2 text-xs uppercase text-muted-foreground;
+      }
+  
+      &[data-filename]::before {
+        content: attr(data-filename) ' (' attr(data-language) ')';
+      }
+    }
+  }
+  
+  [data-rehype-pretty-code-title] {
+    @apply bg-zinc-700 text-zinc-200 rounded-t-lg py-2 px-3 font-semibold text-sm;
+  }
+  
+  figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])
+    pre {
+    @apply !rounded-t-none;
+  }
+  
+  article ul .task-list-item {
+    ::before {
+      display: none;
+    }
+  }
+  
