@@ -10,7 +10,7 @@ import { getAllBlogSlug, getBlogBySlug } from '@/lib/fetchmdx';
 
 interface PostPageProps {
   params: Promise<{
-    slug: string;
+    slug: string[];
   }>;
 }
 
@@ -19,12 +19,16 @@ export async function generateStaticParams() {
   return slug;
 }
 
+async function getPostFromParams(params: PostPageProps['params']) {
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug?.join('/');
+  return getBlogBySlug(slug);
+}
+
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const post = await getBlogBySlug(resolvedParams.slug);
-  // const post = await getBlogBySlug(params);
+  const post = await getPostFromParams(params);
 
   if (!post) {
     return {};
