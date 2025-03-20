@@ -34,11 +34,11 @@ export function PostHeader({
             <time dateTime={date}>{formatDate(date)}</time>
           </div>
           {/* Separator between date and reading time */}
-          {/* <div className="text-muted-foreground">|</div>
-          <div className="flex items-center gap-2 transition-colors hover:text-primary">
+          <div className="text-muted-foreground hidden">|</div>
+          <div className="hidden items-center gap-2 transition-colors hover:text-primary">
             <LuClock className="h-4 w-4" />
             <span>{readingTime} min read</span>
-          </div> */}
+          </div>
         </div>
 
         {tags?.length ? (
