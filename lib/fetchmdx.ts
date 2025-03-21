@@ -36,11 +36,16 @@ export async function getBlogs() {
   return blogs;
 }
 
+// export function getAllBlogSlug() {
+//   const files = fs.readdirSync(blogContentDir);
+//   const slugArray = files.map((file) => path.parse(file).name);
+//   return { slug: slugArray };
+// }
 export function getAllBlogSlug() {
   const files = fs.readdirSync(blogContentDir);
   const slugs = files.map((file) => {
     const name = path.parse(file).name;
-    return { slug: name };
+    return { slug: [name] };
   });
   return slugs;
 }

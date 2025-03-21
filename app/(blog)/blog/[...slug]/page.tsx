@@ -8,34 +8,33 @@ import { PostNavigation } from '@/components/blog/post-navigation';
 import { PostFooter } from '@/components/blog/post-footer';
 import { getAllBlogSlug, getBlogBySlug } from '@/lib/fetchmdx';
 
-// interface PostPageProps {
-//   params: Promise<{
-//     slug: string[];
-//   }>;
-// }
-// interface PostPageProps {
-//   params: Promise<{ slug: string }>
-// }
-
-export async function generateStaticParams() {
-  const slug = await getAllBlogSlug();
-  return slug;
+interface PostPageProps {
+  params: Promise<{
+    slug: string[];
+  }>;
 }
 
-// async function getPostFromParams(params: PostPageProps['params']) {
-//   const slug = params?.slug?.join('/');
-//   return getBlogBySlug(slug);
-// }
-// async function getPostFromParams(params: PostPageProps['params']) {
-//   const resolvedParams = await params;
-//   const slug = resolvedParams?.slug?.join('/');
-//   return getBlogBySlug(slug);
+export async function generateStaticParams() {
+  const slug = await getAllBlogSlug(); // Destructure the slug array
+  return slug.map((slugName) => ({ slug: slugName.slug }));
+}
+
+// export async function generateStaticParams() {
+//   const slug = await getAllBlogSlug();
+//   return slug;
 // }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getBlogBySlug(slug);
-  // const post = await getPostFromParams(params);
+async function getPostFromParams(params: PostPageProps['params']) {
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug?.join('/');
+  return await getBlogBySlug(slug);
+}
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const post = await getPostFromParams(params);
+  // const post = await getBlogBySlug(slug);
 
   if (!post) {
     return {};
@@ -48,6 +47,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${post.frontmatter.title}`,
     description: post.frontmatter.description,
     authors: { name: siteConfig.author.name },
+    alternates: {
+      canonical: './',
+    },
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.description,
@@ -71,13 +73,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-const PostPage = async ({
-  params,
-}: {
-  params: { slug: string }
-}) => {
-  const { slug } = await params;
-  const post = await getBlogBySlug(slug);
+const PostPage = async ({ params }: PostPageProps) => {
+  const post = await getPostFromParams(params);
 
   if (!post || !post.frontmatter.published) {
     notFound();
