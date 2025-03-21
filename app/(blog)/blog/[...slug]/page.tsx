@@ -8,10 +8,15 @@ import { PostNavigation } from '@/components/blog/post-navigation';
 import { PostFooter } from '@/components/blog/post-footer';
 import { getAllBlogSlug, getBlogBySlug } from '@/lib/fetchmdx';
 
+// interface PostPageProps {
+//   params: Promise<{
+//     slug: string[];
+//   }>;
+// }
 interface PostPageProps {
-  params: Promise<{
+  params: {
     slug: string[];
-  }>;
+  };
 }
 
 export async function generateStaticParams() {
@@ -20,14 +25,18 @@ export async function generateStaticParams() {
 }
 
 async function getPostFromParams(params: PostPageProps['params']) {
-  const resolvedParams = await params;
-  const slug = resolvedParams?.slug?.join('/');
+  const slug = params?.slug?.join('/');
   return getBlogBySlug(slug);
 }
+// async function getPostFromParams(params: PostPageProps['params']) {
+//   const resolvedParams = await params;
+//   const slug = resolvedParams?.slug?.join('/');
+//   return getBlogBySlug(slug);
+// }
 
 export async function generateMetadata({
   params,
-}: PostPageProps): Promise<Metadata> {
+}: PostPageProps) {
   const post = await getPostFromParams(params);
 
   if (!post) {
@@ -45,7 +54,7 @@ export async function generateMetadata({
       title: post.frontmatter.title,
       description: post.frontmatter.description,
       type: 'article',
-      url: `${siteConfig.url}/${post.slug}`,
+      url: `${siteConfig.url}/blog/${post.slug}`,
       images: [
         {
           url: `/api/og}`,
