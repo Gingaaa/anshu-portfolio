@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import '@/styles/mdx.css';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { Separator } from '@/components/ui/separator';
 import { PostHeader } from '@/components/blog/post-header';
