@@ -14,6 +14,7 @@ export default async function Home() {
   const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
   const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
 
+
   return (
     <div className="">
       {/* Hero Section  */}

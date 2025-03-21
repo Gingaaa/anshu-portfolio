@@ -40,7 +40,7 @@ export function getAllBlogSlug() {
   const files = fs.readdirSync(blogContentDir);
   const slugs = files.map((file) => {
     const name = path.parse(file).name;
-    return { slug: [name] };
+    return { slug: name };
   });
   return slugs;
 }
@@ -77,10 +77,10 @@ export async function getWorks() {
 }
 
 export function getAllWorkSlug() {
-  const files = fs.readdirSync(workContentDir);
+  const files = fs.readdirSync(blogContentDir);
   const slugs = files.map((file) => {
     const name = path.parse(file).name;
-    return { slug: [name] };
+    return { slug: name };
   });
   return slugs;
 }
@@ -121,10 +121,10 @@ export async function getProjects() {
 }
 
 export function getAllProjectSlug() {
-  const files = fs.readdirSync(projectsContentDir);
+  const files = fs.readdirSync(blogContentDir);
   const slugs = files.map((file) => {
     const name = path.parse(file).name;
-    return { slug: [name] };
+    return { slug: name };
   });
   return slugs;
 }

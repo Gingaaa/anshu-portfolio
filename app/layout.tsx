@@ -11,6 +11,7 @@ import Footer from "@/components/footer";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://anshu-portfolio-three.vercel.app'),
   title: "Anshu Kumar | Full-Stack Developer & Innovator",
   description: "Anshu Kumar, a skilled software developer, specializes in full stack and app development. Exploring new opportunities to contribute and innovate in tech.",
 };

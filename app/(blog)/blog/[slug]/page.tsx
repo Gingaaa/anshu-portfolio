@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import '@/styles/mdx.css';
-// import { Metadata } from 'next';
+import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { Separator } from '@/components/ui/separator';
 import { PostHeader } from '@/components/blog/post-header';
@@ -13,31 +13,29 @@ import { getAllBlogSlug, getBlogBySlug } from '@/lib/fetchmdx';
 //     slug: string[];
 //   }>;
 // }
-interface PostPageProps {
-  params: {
-    slug: string[];
-  };
-}
+// interface PostPageProps {
+//   params: Promise<{ slug: string }>
+// }
 
 export async function generateStaticParams() {
   const slug = await getAllBlogSlug();
   return slug;
 }
 
-async function getPostFromParams(params: PostPageProps['params']) {
-  const slug = params?.slug?.join('/');
-  return getBlogBySlug(slug);
-}
+// async function getPostFromParams(params: PostPageProps['params']) {
+//   const slug = params?.slug?.join('/');
+//   return getBlogBySlug(slug);
+// }
 // async function getPostFromParams(params: PostPageProps['params']) {
 //   const resolvedParams = await params;
 //   const slug = resolvedParams?.slug?.join('/');
 //   return getBlogBySlug(slug);
 // }
 
-export async function generateMetadata({
-  params,
-}: PostPageProps) {
-  const post = await getPostFromParams(params);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
+  // const post = await getPostFromParams(params);
 
   if (!post) {
     return {};
@@ -78,7 +76,8 @@ const PostPage = async ({
 }: {
   params: { slug: string }
 }) => {
-  const post = await getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
 
   if (!post || !post.frontmatter.published) {
     notFound();
