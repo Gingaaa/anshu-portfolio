@@ -117,7 +117,7 @@ export async function getProjects() {
 }
 
 export function getAllProjectSlug() {
-  const files = fs.readdirSync(blogContentDir);
+  const files = fs.readdirSync(projectsContentDir);
   const slugs = files.map((file) => {
     const name = path.parse(file).name;
     return { slug: [name] };
