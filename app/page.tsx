@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+// import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
-import { getBlogs, getProjects } from "@/lib/fetchmdx";
-import { sortBlogPostsByFeatured, sortProjectsByFeatured } from "@/lib/utils";
+// import { getBlogs, getProjects } from "@/lib/fetchmdx";
+// import { sortBlogPostsByFeatured, sortProjectsByFeatured } from "@/lib/utils";
 // import { getBlogBySlugTest } from "@/mdx-remote-configuration";
 import Link from "next/link";
 import { FaBookOpen, FaGithub } from "react-icons/fa";
@@ -10,10 +10,10 @@ import { IoMdArrowForward } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 
 export default async function Home() {
-  const projects = await getProjects();
-  const blogs = await getBlogs();
-  const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
-  const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
+  // const projects = await getProjects();
+  // const blogs = await getBlogs();
+  // const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
+  // const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
 
   // console.log(getBlogBySlugTest("/configure-mdx-in-nextjs"))
 
