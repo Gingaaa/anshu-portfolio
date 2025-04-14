@@ -37,15 +37,15 @@ export async function BlogContent({ searchParams }: BlogContentProps) {
   if (currentPage > totalPages) {
     return (
       <div>
-        <h2 className="text-2xl font-bold">Page not found</h2>
-        <p className="mt-4">This page does not exist.</p>
+        <h2 className="text-2xl font-bold">Blogs not found</h2>
+        <p className="mt-4">This page will be updated soon...</p>
       </div>
     );
   }
 
   return (
     <Suspense fallback={<div>Loading posts...</div>}>
-      {displayPosts.length > 0 ? (
+      {displayPosts.length < 0 ? (
         <div className="space-y-8">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {displayPosts.map((post:MdxBlogs) => (
@@ -58,7 +58,7 @@ export async function BlogContent({ searchParams }: BlogContentProps) {
           />
         </div>
       ) : (
-        <p className="text-muted-foreground">No posts found.</p>
+        <p className="text-muted-foreground">Blogs will be added soon...</p>
       )}
     </Suspense>
   );

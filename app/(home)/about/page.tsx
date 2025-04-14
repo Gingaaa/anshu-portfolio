@@ -75,12 +75,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <LinkButton
+          {/* <LinkButton
             link={siteConfig.links.setup}
             ariaLabel="Explore my setup"
             variant="outline"
             size="lg"
-          />
+          /> */}
 
           {/* Contact Section */}
           <div className="prose prose-lg mx-auto dark:prose-invert">

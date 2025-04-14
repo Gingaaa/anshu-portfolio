@@ -82,7 +82,7 @@ export const siteConfig = {
       icon: IoMdArrowForward,
     },
     resume: {
-      url: "/resume.pdf",
+      url: "/Anshu_Kumar_Resume.pdf",
       label: "Resume",
       icon: FaDownload,
     },

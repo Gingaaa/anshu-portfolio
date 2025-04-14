@@ -1,22 +1,23 @@
 // src/components/blog/post-header.tsx
 import { LuCalendar, LuClock } from 'react-icons/lu';
 import { formatDate } from '@/lib/utils';
-import { Tag } from './tag';
+// import { Tag } from './tag';
+import { Tech } from './tech';
 
-interface PostHeaderProps {
+interface ProjectPageHeaderProps {
   title: string;
   date: string;
   readingTime?: number;
-  tags?: string[];
+  tech?: string[];
   description?: string;
 }
 
-export function PostHeader({
+export function ProjectPageHeader({
   title,
   date,
   readingTime = 0,
-  tags,
-}: PostHeaderProps) {
+  tech,
+}: ProjectPageHeaderProps) {
   return (
     <div className="space-y-10">
       {/* Title Section */}
@@ -41,10 +42,10 @@ export function PostHeader({
           </div>
         </div>
 
-        {tags?.length ? (
+        {tech?.length ? (
           <div className="-mt-2 flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Tag key={tag} tag={tag} />
+            {tech.map((tech) => (
+              <Tech key={tech} tech={tech} />
             ))}
           </div>
         ) : null}

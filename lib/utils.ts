@@ -15,11 +15,30 @@ export function sortPosts(blog_posts: MdxBlogs[]): MdxBlogs[] {
   );
 }
 
+export function sortProjects(projects: MdxProject[]) {
+  return projects.sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
+  );
+}
+
 export function getAllTags(blog_posts: MdxBlogs[]): Record<string, number> {
   return blog_posts.reduce((acc, blog_post) => {
     if (blog_post.frontmatter.published && blog_post.frontmatter.tags) {
       blog_post.frontmatter.tags.forEach((tag) => {
         acc[tag] = (acc[tag] || 0) + 1;
+      });
+    }
+    return acc;
+  }, {} as Record<string, number>);
+}
+
+export function getAllProjectTags(project_posts: MdxProject[]): Record<string, number> {
+  return project_posts.reduce((acc, project_posts) => {
+    if (project_posts.frontmatter.featured && project_posts.frontmatter.tech) {
+      project_posts.frontmatter.tech.forEach((tech) => {
+        acc[tech] = (acc[tech] || 0) + 1;
       });
     }
     return acc;
@@ -59,13 +78,7 @@ export function sortWorkExperience(workExperience: MdxWorkExperience[]) {
   );
 }
 
-export function sortProjects(projects: MdxProject[]) {
-  return projects.sort(
-    (a, b) =>
-      new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
-  );
-}
+
 
 export function sortProjectsByFeatured(projects: MdxProject[]) {
   return [...projects].sort(

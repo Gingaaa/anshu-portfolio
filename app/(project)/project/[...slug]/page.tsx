@@ -6,39 +6,38 @@ import '../../../../styles/mdx.css';
 
 import { siteConfig } from '@/config/site';
 import { Separator } from '@/components/ui/separator';
-import { PostHeader } from '@/components/blog/post-header';
-import { PostNavigation } from '@/components/blog/post-navigation';
-import { PostFooter } from '@/components/blog/post-footer';
-import { getAllBlogSlug, getBlogBySlug } from '@/lib/fetchmdx';
+import { getAllProjectSlug, getProjectBySlug } from '@/lib/fetchmdx';
 import { CustomMDX } from '@/components/mdx-remote';
 import React from 'react';
 import rehypePrettyCode, { LineElement } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkToc from 'remark-toc';
+import { ProjectNavigation } from '@/components/project/project-navigation';
+import { ProjectPageHeader } from '@/components/project/project-page-header';
+import { ProjectFooter } from '@/components/project/project-page-footer';
 
-interface PostPageProps {
+interface ProjectPageProps {
   params: Promise<{
     slug: string[];
   }>;
 }
 
 export async function generateStaticParams() {
-  const slug = await getAllBlogSlug(); // Destructure the slug array
+  const slug = await getAllProjectSlug(); // Destructure the slug array
   return slug.map((slugName) => ({ slug: slugName.slug }));
 }
 
-async function getPostFromParams(params: PostPageProps['params']) {
+async function getProjectFromParams(params: ProjectPageProps['params']) {
   const resolvedParams = await params;
   const slug = resolvedParams?.slug?.join('/');
-  return await getBlogBySlug(slug);
+  return await getProjectBySlug(slug);
 }
 
 export async function generateMetadata({
   params,
-}: PostPageProps): Promise<Metadata> {
-  const post = await getPostFromParams(params);
-  // const post = await getBlogBySlug(slug);
+}: ProjectPageProps): Promise<Metadata> {
+  const post = await getProjectFromParams(params);
 
   if (!post) {
     return {};
@@ -77,10 +76,10 @@ export async function generateMetadata({
   };
 }
 
-const PostPage = async ({ params }: PostPageProps) => {
-  const post = await getPostFromParams(params);
+const ProjectPage = async ({ params }: ProjectPageProps) => {
+  const post = await getProjectFromParams(params);
 
-  if (!post || !post.frontmatter.published) {
+  if (!post || !post.frontmatter.featured) {
     notFound();
   }
 
@@ -97,14 +96,14 @@ const PostPage = async ({ params }: PostPageProps) => {
 
               {/* Center content */}
               <main className="w-full min-w-0 px-4 sm:px-6 xl:max-w-[1000px]">
-                <PostNavigation className="mb-8" />
+                <ProjectNavigation className="mb-8" />
 
                 <article>
                   <div className="flex flex-col space-y-8">
-                    <PostHeader
+                    <ProjectPageHeader
                       title={post.frontmatter.title}
                       date={post.frontmatter.date}
-                      tags={post.frontmatter.tags}
+                      tech={post.frontmatter.tech}
                       readingTime={post.frontmatter.readingTime}
                     />
 
@@ -160,9 +159,9 @@ const PostPage = async ({ params }: PostPageProps) => {
           </div>
         </div>
       </div>
-      <PostFooter title={post.frontmatter.title} slug={post.slug} />
+      <ProjectFooter title={post.frontmatter.title} slug={post.slug} />
     </div>
   );
 };
 
-export default PostPage;
+export default ProjectPage;

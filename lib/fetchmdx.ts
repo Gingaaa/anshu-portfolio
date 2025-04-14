@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { compileMDX } from "next-mdx-remote/rsc";
+import matter from "gray-matter";
 
 const blogContentDir = path.join(process.cwd(), "content/blogs");
 const workContentDir = path.join(process.cwd(), "content/work");
@@ -10,20 +10,19 @@ export async function getBlogBySlug(slug: string) {
   const fileName = slug + ".mdx";
   const filePath = path.join(blogContentDir, fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
-  const { frontmatter, content } = await compileMDX<{
-    title: string;
-    date: string;
-    description: string;
-    tags: Array<string>;
-    published: boolean;
-    featured?: boolean;
-  }>({
-    source: fileContent,
-    options: { parseFrontmatter: true },
-  });
+  const { data: frontmatter, content } = matter(fileContent);
+
   return {
-    frontmatter,
-    content,
+    frontmatter: frontmatter as {
+      title: string;
+      date: string;
+      description: string;
+      readingTime: number;
+      tags: Array<string>;
+      published: boolean;
+      featured?: boolean;
+    },
+    content: content,
     slug: path.parse(fileName).name,
   };
 }
@@ -36,11 +35,6 @@ export async function getBlogs() {
   return blogs;
 }
 
-// export function getAllBlogSlug() {
-//   const files = fs.readdirSync(blogContentDir);
-//   const slugArray = files.map((file) => path.parse(file).name);
-//   return { slug: slugArray };
-// }
 export function getAllBlogSlug() {
   const files = fs.readdirSync(blogContentDir);
   const slugs = files.map((file) => {
@@ -54,21 +48,19 @@ export async function getWorkBySlug(slug: string) {
   const fileName = slug + ".mdx";
   const filePath = path.join(workContentDir, fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
-  const { frontmatter, content } = await compileMDX<{
-    title: string;
-    company: string;
-    startDate: string;
-    endDate: string;
-    description: string;
-    skills: Array<string>;
-    author: string;
-  }>({
-    source: fileContent,
-    options: { parseFrontmatter: true },
-  });
+  const { data: frontmatter, content } = matter(fileContent);
+
   return {
-    frontmatter,
-    content,
+    frontmatter: frontmatter as {
+      title: string;
+      company: string;
+      startDate: string;
+      endDate: string;
+      description: string;
+      skills: Array<string>;
+      author: string;
+    },
+    content: content,
     slug: path.parse(fileName).name,
   };
 }
@@ -94,25 +86,24 @@ export async function getProjectBySlug(slug: string) {
   const fileName = slug + ".mdx";
   const filePath = path.join(projectsContentDir, fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
-  const { frontmatter, content } = await compileMDX<{
-    title: string;
-    description: string;
-    date: string;
-    status: string;
-    tech: Array<string>;
-    featured?: boolean;
-    links: Array<{
-      name: string;
-      url: string;
-      type: string;
-    }>;
-  }>({
-    source: fileContent,
-    options: { parseFrontmatter: true },
-  });
+  const { data: frontmatter, content } = matter(fileContent);
+
   return {
-    frontmatter,
-    content,
+    frontmatter: frontmatter as {
+      title: string;
+      description: string;
+      date: string;
+      status: string;
+      tech: Array<string>;
+      featured?: boolean;
+      readingTime: number;
+      links: Array<{
+        name: string;
+        url: string;
+        type: string;
+      }>;
+    },
+    content: content,
     slug: path.parse(fileName).name,
   };
 }
@@ -129,7 +120,7 @@ export function getAllProjectSlug() {
   const files = fs.readdirSync(blogContentDir);
   const slugs = files.map((file) => {
     const name = path.parse(file).name;
-    return { slug: name };
+    return { slug: [name] };
   });
   return slugs;
 }

@@ -1,6 +1,4 @@
 // types/profile.ts
-import { JSXElementConstructor, ReactElement } from "react";
-
 export type MdxBlogs = {
   frontmatter: {
     title: string;
@@ -10,7 +8,7 @@ export type MdxBlogs = {
     published: boolean;
     featured?: boolean;
   };
-  content: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  content: string;
   slug: string;
 };
 
@@ -22,13 +20,14 @@ export type MdxProject = {
     status: string;
     tech: Array<string>;
     featured?: boolean;
+    readingTime: number;
     links: Array<{
       name: string;
       url: string;
       type: string;
     }>;
   };
-  content: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  content: string;
   slug: string;
 };
 
@@ -42,7 +41,7 @@ export type MdxWorkExperience = {
     skills: Array<string>;
     author: string;
   };
-  content: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  content: string;
   slug: string;
 };
 

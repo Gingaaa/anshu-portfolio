@@ -26,6 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     // <ViewTransitions>
+    // <motion.div
+    //   initial={{ opacity: 0 }}
+    //   animate={{ opacity: 1 }}
+    //   exit={{ opacity: 0 }}
+    //   transition={{ duration: 1.3 }}
+    // >
       <html lang="en">
         <body
           className={`${inter.className} antialiased`}
@@ -37,6 +43,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
+          
             {children}
             <SpeedInsights />
             <Analytics />
@@ -44,6 +51,7 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
+    // </motion.div>
     // {/* </ViewTransitions> */}
   );
 }

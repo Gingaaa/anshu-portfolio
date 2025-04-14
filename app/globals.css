@@ -65,7 +65,7 @@ body {
 @layer base {
   * {
     @apply border-border;
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
@@ -90,45 +90,61 @@ body {
   margin-right: auto;
   margin-left: auto;
   padding-right: 1rem;
-  padding-left: 1rem
+  padding-left: 1rem;
 }
 
 @media (min-width: 100%) {
   .container {
-      max-width:100%;
-      padding-right: 1rem;
-      padding-left: 1rem
+    max-width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-      max-width:768px;
-      padding-right: 2rem;
-      padding-left: 2rem
+    max-width: 768px;
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-      max-width:1024px;
-      padding-right: 4rem;
-      padding-left: 4rem
+    max-width: 1024px;
+    padding-right: 4rem;
+    padding-left: 4rem;
   }
 }
 
 @media (min-width: 1280px) {
   .container {
-      max-width:1280px;
-      padding-right: 5rem;
-      padding-left: 5rem
+    max-width: 1280px;
+    padding-right: 5rem;
+    padding-left: 5rem;
   }
 }
 
 @media (min-width: 1400px) {
   .container {
-      max-width: 1399px;
-      padding-right: 6rem;
-      padding-left: 6rem
+    max-width: 1399px;
+    padding-right: 6rem;
+    padding-left: 6rem;
   }
 }
+
+/* pre {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+} */
