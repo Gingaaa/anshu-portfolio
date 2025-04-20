@@ -18,7 +18,8 @@ export default function ContactPage() {
           <div className="prose prose-lg dark:prose-invert">
             Have a question or want to work together? You can reach out to me
             via <Link href={siteConfig.links.email.url}>email</Link>,{' '}
-            <Link href={siteConfig.links.linkedin.url}>LinkedIn</Link>, or{' '}
+            <Link href={siteConfig.links.linkedin.url}>LinkedIn</Link>, 
+            <Link href={`tel:${siteConfig.phone}`} target='_parent'>{siteConfig.phone}</Link>, or{' '}
             <Link href={siteConfig.links.x.url}>X</Link>.
              {/* Or fill out the form
             below and I&apos;ll get back to you as soon as possible. */}

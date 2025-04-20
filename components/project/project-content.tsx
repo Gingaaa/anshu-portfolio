@@ -43,7 +43,7 @@ export async function ProjectContent({ searchParams }: ProjectContentProps) {
 
   return (
     <Suspense fallback={<div>Loading projects...</div>}>
-      {displayProject.length < 0 ? (
+      {displayProject.length > 0 ? (
         <div className="space-y-8">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {displayProject.map((post:MdxProject) => (

@@ -15,6 +15,7 @@ export const siteConfig = {
   last_name: "Kumar",
   name: "Anshu Kumar",
   url: base_url,
+  phone: "+91 8882965595",
   repo_url: "https://github.com/Gingaaa/anshu-portfolio",
   description:
     "Hi, I’m Anshu Kumar, a Software Developer focused on building attractive and multi functional websites and apps. This site is a mix of my work, my thoughts, and my journey as a developer.",

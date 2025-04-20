@@ -45,7 +45,7 @@ export async function BlogContent({ searchParams }: BlogContentProps) {
 
   return (
     <Suspense fallback={<div>Loading posts...</div>}>
-      {displayPosts.length < 0 ? (
+      {displayPosts.length > 0 ? (
         <div className="space-y-8">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {displayPosts.map((post:MdxBlogs) => (
