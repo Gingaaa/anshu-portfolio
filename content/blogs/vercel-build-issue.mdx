@@ -36,11 +36,11 @@ This was the key question. Zustand itself is incredibly lightweight. The problem
 
 On the server, during the build, my code was creating and holding onto multiple instances of my Zustand store in memory for every page it rendered. Over many pages, this added up, eventually exceeding the default memory limit Vercel allocates for its build containers.
 
-## My Solution: A Two-Step Approach
+## My Solution
 
 I tackled this with a quick fix to get my site deployed, followed by the correct, long-term solution to prevent it from happening again.
 
-### Step 1: The Quick Fix (Increasing Node's Memory Limit)
+### The Quick Fix (Increasing Node's Memory Limit)
 
 First, I just needed to get the build working now. The fastest way was to tell Node.js to allocate more memory for its process.
 
