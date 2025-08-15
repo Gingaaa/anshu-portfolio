@@ -1,0 +1,76 @@
+---
+title: "Vercel build freezing error when deploying Nextjs app"
+date: 2025-08-15
+description: How to fix the vercel build freezing error when deploying nextjs app.
+readingTime : 5
+tags: ["vercel", "nextjs", "build", "errors"]
+published: true
+---
+
+
+## How it Occured
+
+I had just integrated the sleek and simple Zustand for state management in my Next.js app. Everything was working perfectly on my local machine. I pushed my changes, Vercel started building, and then... BAM! 💥 The build failed
+
+**Also Know as "JavaScript Heap Out of Memory"**
+
+Below is the image of **Vercel** build freeze error.
+
+<img src="/images/vercel-build-freeze-error.png" alt="Next.js with MDX" className='w-[300px] h-[300px]' />
+
+This is a classic and unfortunately common issue when a Next.js project grows in size.
+
+It’s a frustrating roadblock that stops your deployment dead in its tracks. If this looks familiar, don't worry. You're not alone, and the fix is often simpler than the error message suggests.
+
+After some digging, I realized this is a common issue. It's rarely about the code being "bad," but rather about the unique environment of a server-side build process. Here's the breakdown of why it happened and how I fixed it.
+
+## Understanding the Root Cause: Why It Crashed
+
+The "heap out of memory" error meant the Node.js process that Next.js was using to build my application had run out of its allocated RAM.
+
+During the next build step, Next.js goes through all the pages and components to pre-render them. This process, especially for larger sites, can be memory-intensive.
+
+"But I only added Zustand! How can a small library cause this?" I thought.
+
+This was the key question. Zustand itself is incredibly lightweight. The problem wasn't the library, but my implementation pattern, which didn't account for the Server-Side Rendering (SSR) nature of the Next.js build process.
+
+On the server, during the build, my code was creating and holding onto multiple instances of my Zustand store in memory for every page it rendered. Over many pages, this added up, eventually exceeding the default memory limit Vercel allocates for its build containers.
+
+## My Solution: A Two-Step Approach
+
+I tackled this with a quick fix to get my site deployed, followed by the correct, long-term solution to prevent it from happening again.
+
+### Step 1: The Quick Fix (Increasing Node's Memory Limit)
+
+First, I just needed to get the build working now. The fastest way was to tell Node.js to allocate more memory for its process.
+
+1. I went to my Project Settings on Vercel.
+
+2. Navigated to the Environment Variables section.
+
+3. Added a new environment variable:
+
+    * Name: NODE_OPTIONS
+
+    * Value: --max-old-space-size=4096
+
+This command tells the Node.js runtime to use up to 4GB (4096MB) of RAM. For my project, this was enough to push the build through successfully.
+
+## Conclusion
+
+The "JavaScript heap out of memory" error was a classic sign that my application's memory usage was spiking during the build. While increasing the memory limit with NODE_OPTIONS was a valid temporary fix, the robust, long-term solution was to ensure my state management patterns were SSR-friendly.
+
+By adopting the Context Provider pattern for Zustand, I created a more scalable and reliable application that is optimized for the server-first world of Next.js.
+
+After these changes, I ran
+
+```bash
+npm run build
+```
+
+and it passed without issues. I pushed it to Vercel and finally saw that green "Success" status on my deployment. ✅
+
+Happy coding!
+
+
+
