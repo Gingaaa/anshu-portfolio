@@ -2,11 +2,10 @@
 title: "Vercel build freezing error when deploying Nextjs app"
 date: 2025-08-15
 description: How to fix the vercel build freezing error when deploying nextjs app.
-readingTime : 5
+readingTime: 5
 tags: ["vercel", "nextjs", "build", "errors"]
 published: true
 ---
-
 
 ## How it Occured
 
@@ -16,7 +15,11 @@ I had just integrated the sleek and simple Zustand for state management in my Ne
 
 Below is the image of **Vercel** build freeze error.
 
-<img src="/images/vercel-build-freeze-error.png" alt="Next.js with MDX" className='w-[300px] h-[300px]' />
+<img
+  src="/images/vercel-build-freeze-error.png"
+  alt="Next.js with MDX"
+  className="w-[300px] h-[300px]"
+/>
 
 This is a classic and unfortunately common issue when a Next.js project grows in size.
 
@@ -50,9 +53,9 @@ First, I just needed to get the build working now. The fastest way was to tell N
 
 3. Added a new environment variable:
 
-    * Name: NODE_OPTIONS
+   - Name: NODE_OPTIONS
 
-    * Value: --max-old-space-size=4096
+   - Value: --max-old-space-size=4096
 
 This command tells the Node.js runtime to use up to 4GB (4096MB) of RAM. For my project, this was enough to push the build through successfully.
 
@@ -71,6 +74,3 @@ npm run build
 and it passed without issues. I pushed it to Vercel and finally saw that green "Success" status on my deployment. ✅
 
 Happy coding!
-
-
-

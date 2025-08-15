@@ -58,6 +58,7 @@ export default function Navbar() {
                                 variant="ghost"
                                 size="icon"
                                 className="h-9 w-9 shrink-0 md:hidden"
+                                aria-label="Menu"
                             >
                                 <IoMenu size="40px" />
                             </Button>
