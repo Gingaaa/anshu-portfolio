@@ -29,6 +29,7 @@ export default function CopyButton({
       <button
         disabled={isCopied}
         onClick={handleClickCopy}
+        aria-label='copy'
         className="absolute right-4 top-4 rounded bg-gray-800 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
       >
         {isCopied ? (
