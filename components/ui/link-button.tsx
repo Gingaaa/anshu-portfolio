@@ -28,6 +28,7 @@ export function LinkButton({
         href={link.url}
         className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
         aria-label={ariaLabel || link.label}
+        target='_blank'
       >
         <Icon className="h-5 w-5" />
       </Link>
@@ -36,7 +37,7 @@ export function LinkButton({
 
   return (
     <Button size={size} variant={variant} asChild className="mt-6">
-      <Link href={link.url}>
+      <Link href={link.url} target='_blank'>
         {iconPosition === 'left' && <Icon className="mr-2 h-4 w-4" />}
         {ariaLabel || link.label}
         {iconPosition === 'right' && <Icon className="ml-2 h-4 w-4" />}
