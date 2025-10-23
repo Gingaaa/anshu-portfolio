@@ -1,17 +1,22 @@
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 // import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
+import { getBlogs } from "@/lib/fetchmdx";
+import { MdxBlogs } from "@/types/profile";
 // import { getBlogs, getProjects } from "@/lib/fetchmdx";
 // import { sortBlogPostsByFeatured, sortProjectsByFeatured } from "@/lib/utils";
 // import { getBlogBySlugTest } from "@/mdx-remote-configuration";
 import Link from "next/link";
+import { FaBookOpen } from "react-icons/fa";
 // import { FaBookOpen, FaGithub } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 
 export default async function Home() {
   // const projects = await getProjects();
-  // const blogs = await getBlogs();
+  const blogs = await getBlogs();
+  const featuredPosts = blogs.filter((post: MdxBlogs) => post.frontmatter.featured).slice(0, 3);
   // const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
   // const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
 
@@ -86,7 +91,7 @@ export default async function Home() {
       </section> */}
 
       {/* Recent Blog Posts */}
-      {/* <section className="container py-20">
+      <section className="container py-20">
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-3xl font-bold tracking-tight">Recent Posts</h2>
           <Button variant="ghost" asChild>
@@ -97,7 +102,7 @@ export default async function Home() {
           </Button>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          {recentPosts.map((post) => (
+          {featuredPosts.map((post) => (
             <Card key={post.slug} className="flex flex-col p-6">
               <h3 className="mb-2 text-xl font-semibold">
                 <Link href={post.slug} className="hover:text-primary">
@@ -116,7 +121,7 @@ export default async function Home() {
             </Card>
           ))}
         </div>
-      </section> */}
+      </section>
 
 
     </div>
