@@ -9,6 +9,7 @@ export default function Footer() {
   const socialLinks = [
     siteConfig.links.github,
     siteConfig.links.x,
+    siteConfig.links.instagram,
     siteConfig.links.linkedin,
     siteConfig.links.email,
   ];

@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaRss } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaRss, FaInstagram  } from 'react-icons/fa';
 import { FaDownload, FaXTwitter } from 'react-icons/fa6';
 import { MdComputer } from 'react-icons/md';
 import { IoMdArrowForward, IoMdMail } from 'react-icons/io';
@@ -36,6 +36,11 @@ export const siteConfig = {
       url: "https://x.com/anshusee22",
       label: "X",
       icon: FaXTwitter,
+    },
+    instagram: {
+      url: "https://www.instagram.com/a_n_s_h_u12",
+      label: "Instagram",
+      icon: FaInstagram ,
     },
     linkedin: {
       url: "https://www.linkedin.com/in/anshusee",
