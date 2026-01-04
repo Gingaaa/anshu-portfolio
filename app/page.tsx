@@ -105,7 +105,10 @@ export default async function Home() {
           {featuredPosts.map((post) => (
             <Card key={post.slug} className="flex flex-col p-6">
               <h3 className="mb-2 text-xl font-semibold">
-                <Link href={post.slug} className="hover:text-primary">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="hover:text-primary"
+                >
                   {post.frontmatter.title}
                 </Link>
               </h3>
@@ -122,8 +125,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
-
     </div>
   );
 };
