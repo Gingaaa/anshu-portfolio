@@ -16,7 +16,9 @@ import { MdEmail } from "react-icons/md";
 export default async function Home() {
   // const projects = await getProjects();
   const blogs = await getBlogs();
-  const featuredPosts = blogs.filter((post: MdxBlogs) => post.frontmatter.featured).slice(0, 3);
+  const featuredPosts = blogs
+    .filter((post: MdxBlogs) => post.frontmatter.featured)
+    .slice(0, 3);
   // const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
   // const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
 
@@ -25,14 +27,13 @@ export default async function Home() {
   return (
     <div className="">
       {/* Hero Section  */}
-      <section className="container flex min-h-[calc(100vh-16rem)] flex-col items-center justify-center space-y-8 text-center">
+      <section className="container flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center space-y-8 text-center">
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             {siteConfig.name}
           </h1>
           <p className="mx-auto max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            Software Developer with a passion for building scalable and reliable
-            Website and App.
+            {siteConfig.bio}
           </p>
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">
@@ -49,6 +50,30 @@ export default async function Home() {
           </Button>
         </div>
       </section>
+
+      {/* <section className="container py-20">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold tracking-tight">Tech Stacks</h2>
+        </div>
+        <div className="flex flex-col space-y-4">
+          {siteConfig.skills.map((category, i) => (
+            <div key={i}>
+              <h3>{category.name} :</h3>
+              <div className="grid grid-cols-12 gap-3 mt-3">
+                {category.list.map((skill, si) => (
+                  <Card key={si} className="p-2 flex flex-col items-center justify-center gap-3 text-center cursor-pointer">
+                    <div
+                      className="w-8 h-8"
+                      dangerouslySetInnerHTML={{ __html: skill.icon }}
+                    ></div>
+                    <span className="!text-xs text-primary hover:text-primary/80 ">{skill.name}</span>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section> */}
 
       {/* Featured Projects */}
       {/* <section className="container py-20">
@@ -127,4 +152,4 @@ export default async function Home() {
       </section>
     </div>
   );
-};
+}
