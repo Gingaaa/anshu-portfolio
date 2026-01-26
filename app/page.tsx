@@ -1,154 +1,155 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-// import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
-import { getBlogs } from "@/lib/fetchmdx";
-import { MdxBlogs } from "@/types/profile";
-// import { getBlogs, getProjects } from "@/lib/fetchmdx";
-// import { sortBlogPostsByFeatured, sortProjectsByFeatured } from "@/lib/utils";
-// import { getBlogBySlugTest } from "@/mdx-remote-configuration";
+import { IconType } from "react-icons";
 import Link from "next/link";
-import { FaBookOpen } from "react-icons/fa";
-// import { FaBookOpen, FaGithub } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import { WorkExperience } from "@/components/work/work-experience";
+import { WorkHeader } from "@/components/work/work-header";
+import Contact from "@/components/contact";
 
 export default async function Home() {
-  // const projects = await getProjects();
-  const blogs = await getBlogs();
-  const featuredPosts = blogs
-    .filter((post: MdxBlogs) => post.frontmatter.featured)
-    .slice(0, 3);
-  // const featuredProjects = sortProjectsByFeatured(projects).slice(0, 3);
-  // const recentPosts = sortBlogPostsByFeatured(blogs).slice(0, 3);
-
-  // console.log(getBlogBySlugTest("/configure-mdx-in-nextjs"))
+  const socialLinks = [
+    siteConfig.links.github,
+    siteConfig.links.linkedin,
+    siteConfig.links.x,
+    siteConfig.links.email,
+  ];
 
   return (
-    <div className="">
+    <div>
+      <div className="fixed left-8 top-1/2 z-10 hidden -translate-y-1/2 flex-col gap-4 lg:flex">
+        {socialLinks.map((link) => {
+          const Icon = link.icon as IconType;
+          return (
+            <Link
+              key={link.label}
+              target="_blank"
+              className="group rounded-full bg-primary/10 p-3 transition-all hover:scale-110 hover:bg-primary hover:text-primary-foreground hover:shadow-lg"
+              href={link.url}
+            >
+              <Icon />
+            </Link>
+          );
+        })}
+      </div>
+
       {/* Hero Section  */}
-      <section className="container flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center space-y-8 text-center">
-        <div className="space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-            {siteConfig.name}
-          </h1>
-          <p className="mx-auto max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            {siteConfig.bio}
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <Button size="lg" asChild>
-            <Link href="/about">
-              About Me <IoMdArrowForward className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/contact">
-              <MdEmail className="mr-2 h-4 w-4" />
-              Get in Touch
-            </Link>
-          </Button>
+      <section className="container flex min-h-[calc(100vh-12rem)] items-center justify-center space-y-8 text-center">
+        <div className="flex animate-fade-in-up animation-delay-0 flex-col gap-14 items-center justify-center text-center">
+          <div className="space-y-4">
+            <Button
+              variant="outline"
+              className="border animate-bounce flex items-center justify-center gap-3 rounded-full w-fit text-center mx-auto px-4 py-1"
+            >
+              <span className="bg-green-500 block w-2 h-2 rounded-full"></span>
+              Available to work and convert ideas into reality
+            </Button>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-8xl">
+              Hi, I&apos;m{" "}
+              <span className="text-primary">{siteConfig.name}</span>
+            </h1>
+            <p className="mx-auto max-w-[700px] text-lg text-muted-foreground sm:text-xl">
+              {siteConfig.bio}
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Button size="lg" asChild>
+              <Link href="#about">
+                About Me <IoMdArrowForward className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link href="#contact">
+                <MdEmail className="mr-2 h-4 w-4" />
+                Get in Touch
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* <section className="container py-20">
+      <section
+        className="container !max-w-6xl py-20 text-center animate-fade-in-up animation-delay-0"
+        id="about"
+      >
         <div className="mb-8">
-          <h2 className="text-3xl font-bold tracking-tight">Tech Stacks</h2>
+          <h2 className="font-sans text-3xl font-bold tracking-tight sm:text-5xl md:text-5xl ">
+            About Me
+          </h2>
         </div>
-        <div className="flex flex-col space-y-4">
+        <div className="prose prose-lg mx-auto dark:prose-invert mb-8">
+          <p>
+            Hey there! I&#39;m a <strong> tech </strong> explorer who&#39;s been
+            hooked on building things since my days at{" "}
+            <strong> Dronacharya College of Engineering, Gurgaon India</strong>,
+            where I earned a BTech in Computer Science. It was there that I
+            discovered my passion for crafting efficient, user-friendly web and
+            mobile apps.
+          </p>
+
+          <p>
+            Currently, I&#39;m a <strong>Software Developer</strong> at{" "}
+            <strong>SetIndiabiz</strong>, where I specialize in creating secure,
+            scalable website. My work revolves around pushing the limits of
+            complex functionality computing, exploring innovative ways to
+            enhance website security, ui and performance.
+          </p>
+
+          <p>
+            I&#39;m deeply invested in development, particularly with{" "}
+            <strong>Typescript</strong>. Its balance of type safety and
+            performance captivated me, and it&#39;s now my go-to language for
+            critical development projects. I actively contribute to the
+            development ecosystem, driven by a belief in the power of
+            open-source collaboration.
+          </p>
+        </div>
+
+        <Button size="lg" asChild>
+          <Link href="#work">
+            View work history <IoMdArrowForward className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </section>
+
+      <section className="container !max-w-6xl py-20 text-center" id="tech">
+        <div className="mb-8">
+          <h2 className="font-sans text-3xl font-bold tracking-tight sm:text-5xl md:text-5xl">
+            Tech Stacks
+          </h2>
+        </div>
+        <div className="flex flex-col space-y-8">
           {siteConfig.skills.map((category, i) => (
             <div key={i}>
-              <h3>{category.name} :</h3>
-              <div className="grid grid-cols-12 gap-3 mt-3">
+              <h3>{category.name}</h3>
+              <div className="flex justify-center flex-wrap gap-3 mt-3">
                 {category.list.map((skill, si) => (
-                  <Card key={si} className="p-2 flex flex-col items-center justify-center gap-3 text-center cursor-pointer">
-                    <div
-                      className="w-8 h-8"
-                      dangerouslySetInnerHTML={{ __html: skill.icon }}
-                    ></div>
-                    <span className="!text-xs text-primary hover:text-primary/80 ">{skill.name}</span>
+                  <Card
+                    key={si}
+                    className="px-3 py-1 flex flex-col items-center justify-center gap-3 text-center cursor-pointer"
+                  >
+                    <span className="text-primary hover:text-primary/80 ">
+                      {skill.name}
+                    </span>
                   </Card>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </section> */}
+      </section>
 
-      {/* Featured Projects */}
-      {/* <section className="container py-20">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Featured Projects
-          </h2>
-          <Button variant="ghost" asChild>
-            <Link href="https://github.com">
-              <FaGithub className="mr-2 h-4 w-4" />
-              View GitHub
-            </Link>
-          </Button>
+      <section className="container !max-w-6xl py-20 text-center" id="work">
+        <div className="">
+          <WorkHeader />
+          <WorkExperience />
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <Card key={project.slug} className="flex flex-col p-6">
-              <h3 className="mb-2 text-xl font-semibold">
-                <Link
-                  href={`/project/${project.slug}`}
-                  className="hover:text-primary"
-                >
-                  {project.frontmatter.title}
-                </Link>
-              </h3>
-              <p className="mb-4 flex-grow text-muted-foreground">
-                {project.frontmatter.description}
-              </p>
-              <div className="space-y-4">
-                <Link
-                  href={`/project/${project.slug}`}
-                  className="text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  View Project ➔
-                </Link>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section> */}
+      </section>
 
-      {/* Recent Blog Posts */}
-      <section className="container py-20">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl font-bold tracking-tight">Recent Posts</h2>
-          <Button variant="ghost" asChild>
-            <Link href="/blog">
-              <FaBookOpen className="mr-2 h-4 w-4" />
-              View All Posts
-            </Link>
-          </Button>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {featuredPosts.map((post) => (
-            <Card key={post.slug} className="flex flex-col p-6">
-              <h3 className="mb-2 text-xl font-semibold">
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="hover:text-primary"
-                >
-                  {post.frontmatter.title}
-                </Link>
-              </h3>
-              <p className="mb-4 flex-grow text-muted-foreground">
-                {post.frontmatter.description}
-              </p>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="text-sm font-medium text-primary hover:text-primary/80"
-              >
-                Read more ➔
-              </Link>
-            </Card>
-          ))}
-        </div>
+      <section className="container !max-w-6xl py-20 text-center" id="contact">
+        <Contact />
       </section>
     </div>
   );

@@ -36,13 +36,13 @@ export default function Footer() {
             ))}
 
             {/* RSS Link */}
-            <div className="ml-2 border-l pl-2">
+            {/* <div className="ml-2 border-l pl-2">
               <LinkButton
                 link={siteConfig.links.rss}
                 iconOnly
                 ariaLabel={siteConfig.links.rss.label}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

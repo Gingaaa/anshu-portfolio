@@ -21,7 +21,7 @@ export function ExperienceCard({
     <div className="group relative grid grid-cols-1 items-center gap-2 md:grid-cols-[180px_1fr] md:gap-8">
       {/* Timeline dot */}
       <div className="absolute left-[190px] top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
-        <LuCircle className="h-3 w-3 fill-background stroke-muted-foreground group-hover:fill-black dark:group-hover:fill-blue-500 transition-colors " />
+        <LuCircle className="h-3 w-3 fill-background stroke-muted-foreground group-hover:fill-black dark:group-hover:fill-primary transition-colors " />
       </div>
 
       {/* Date */}
@@ -38,10 +38,10 @@ export function ExperienceCard({
         <CardContent className="p-4 md:p-6">
           <div className="space-y-4">
             <div className="space-y-2">
-              <h3 className="text-base font-semibold leading-none md:text-lg">
+              <h3 className="text-base text-start font-semibold leading-none md:text-lg">
                 {title}
               </h3>
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground md:text-base">
                   <LuBuilding2 className="h-4 w-4" />
                   <span>{company}</span>
@@ -53,7 +53,7 @@ export function ExperienceCard({
               </div>
             </div>
 
-            <p className="text-sm leading-relaxed text-muted-foreground/90 md:text-base">
+            <p className="text-sm text-start leading-relaxed text-muted-foreground/90 md:text-base">
               {description}
             </p>
 

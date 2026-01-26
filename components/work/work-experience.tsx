@@ -1,7 +1,7 @@
 // src/components/work/work-experience.tsx
-import { ExperienceCard } from '@/components/work/experience-card';
-import { getWorks } from '@/lib/fetchmdx';
-import { getDuration, sortWorkExperience } from '@/lib/utils';
+import { ExperienceCard } from "@/components/work/experience-card";
+import { getWorks } from "@/lib/fetchmdx";
+import { getDuration, sortWorkExperience } from "@/lib/utils";
 // import { work_experience } from 'generated/content';
 
 export async function WorkExperience() {
@@ -20,7 +20,10 @@ export async function WorkExperience() {
             key={index}
             title={experience.frontmatter.title}
             company={experience.frontmatter.company}
-            period={getDuration(experience.frontmatter.startDate, experience.frontmatter.endDate)}
+            period={getDuration(
+              experience.frontmatter.startDate,
+              experience.frontmatter.endDate,
+            )}
             description={experience.frontmatter.description}
             technologies={experience.frontmatter.skills}
           />

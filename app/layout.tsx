@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/header";
 import ThemeProvider from "@/components/theme-provider";
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/next';
 import Footer from "@/components/footer";
 // import { ViewTransitions } from 'next-view-transitions'
 
@@ -45,8 +43,6 @@ export default function RootLayout({
             <Navbar />
           
             {children}
-            <SpeedInsights />
-            <Analytics />
             <Footer />
           </ThemeProvider>
         </body>
