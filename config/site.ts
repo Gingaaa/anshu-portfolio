@@ -32,13 +32,7 @@ export const siteConfig = {
       name: "Languages",
       list: [
         {
-          name: "C",
-        },
-        {
           name: "Java",
-        },
-        {
-          name: "Python",
         },
         {
           name: "HTML5",
@@ -51,9 +45,6 @@ export const siteConfig = {
         },
         {
           name: "Typescript",
-        },
-        {
-          name: "MDX",
         },
         {
           name: "Sass",
@@ -76,13 +67,7 @@ export const siteConfig = {
           name: "Zustand",
         },
         {
-          name: "Redux",
-        },
-        {
           name: "Shadecn UI",
-        },
-        {
-          name: "Bootstrap",
         },
         {
           name: "Zod",
@@ -91,13 +76,7 @@ export const siteConfig = {
           name: "Jest",
         },
         {
-          name: "Tanstack query",
-        },
-        {
           name: "React query",
-        },
-        {
-          name: "Framer Motion",
         },
       ],
     },
@@ -108,22 +87,10 @@ export const siteConfig = {
           name: "Rest API",
         },
         {
-          name: "Websocket",
-        },
-        {
           name: "Nodejs",
         },
         {
-          name: "Expressjs",
-        },
-        {
           name: "Mongodb",
-        },
-        {
-          name: "Mongoose",
-        },
-        {
-          name: "Nodemon",
         },
       ],
     },
@@ -140,12 +107,6 @@ export const siteConfig = {
           name: "Git",
         },
         {
-          name: "Github",
-        },
-        {
-          name: "RabbitMQ",
-        },
-        {
           name: "Firebase",
         },
       ],
@@ -158,6 +119,9 @@ export const siteConfig = {
         },
         {
           name: "IntelliJ IDEA",
+        },
+        {
+          name: "Sublime",
         },
       ],
     },
