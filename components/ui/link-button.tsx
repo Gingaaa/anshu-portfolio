@@ -26,7 +26,7 @@ export function LinkButton({
     return (
       <Link
         href={link.url}
-        className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
+        className="text-muted-foreground hover:scale-125 transition-colors duration-300 ease-linear hover:text-foreground"
         aria-label={ariaLabel || link.label}
         target='_blank'
       >

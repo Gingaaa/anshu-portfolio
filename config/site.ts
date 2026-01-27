@@ -88,6 +88,15 @@ export const siteConfig = {
           name: "Zod",
         },
         {
+          name: "Jest",
+        },
+        {
+          name: "Tanstack query",
+        },
+        {
+          name: "React query",
+        },
+        {
           name: "Framer Motion",
         },
       ],

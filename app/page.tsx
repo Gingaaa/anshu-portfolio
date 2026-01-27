@@ -26,7 +26,7 @@ export default async function Home() {
             <Link
               key={link.label}
               target="_blank"
-              className="group rounded-full bg-primary/10 p-3 transition-all hover:scale-110 hover:bg-primary hover:text-primary-foreground hover:shadow-lg"
+              className="group rounded-full bg-primary/10 p-3 transition-all hover:scale-110 hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary"
               href={link.url}
             >
               <Icon />
@@ -128,9 +128,9 @@ export default async function Home() {
                 {category.list.map((skill, si) => (
                   <Card
                     key={si}
-                    className="px-3 py-1 flex flex-col items-center justify-center gap-3 text-center cursor-pointer"
+                    className="px-3 py-1 flex group shadow-lg hover:shadow-primary hover:text-accent-foreground flex-col items-center justify-center gap-3 text-center cursor-pointer"
                   >
-                    <span className="text-primary hover:text-primary/80 ">
+                    <span className="text-primary group-hover:text-primary/80 ">
                       {skill.name}
                     </span>
                   </Card>
