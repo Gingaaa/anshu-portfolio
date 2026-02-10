@@ -64,6 +64,9 @@ export const siteConfig = {
           name: "Tailwind Css",
         },
         {
+          name: "Redux",
+        },
+        {
           name: "Zustand",
         },
         {
