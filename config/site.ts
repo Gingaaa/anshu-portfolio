@@ -92,6 +92,9 @@ export const siteConfig = {
         {
           name: "Mongodb",
         },
+        {
+          name: "GraphQL",
+        },
       ],
     },
     {
