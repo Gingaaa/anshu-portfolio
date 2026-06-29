@@ -90,8 +90,8 @@ export default async function Home() {
           </p>
 
           <p>
-            Currently, I&#39;m a <strong>Software Developer</strong> at{" "}
-            <strong>SetIndiabiz</strong>, where I specialize in creating secure,
+            Currently, I&#39;m a <strong>Associate Technology L1</strong> at{" "}
+            <strong>Ayasya Digital Solution</strong>, where I specialize in creating secure,
             scalable website. My work revolves around pushing the limits of
             complex functionality computing, exploring innovative ways to
             enhance website security, ui and performance.

@@ -93,6 +93,9 @@ export const siteConfig = {
           name: "Nodejs",
         },
         {
+          name: "Strapi",
+        },
+        {
           name: "Mongodb",
         },
         {
