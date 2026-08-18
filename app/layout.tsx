@@ -1,19 +1,21 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Navbar from "@/components/header";
 import ThemeProvider from "@/components/theme-provider";
 import Footer from "@/components/footer";
-// import { ViewTransitions } from 'next-view-transitions'
+import CursorRevealBackground from "@/components/cursor-reveal-background";
+import LeftSideSocials from "@/components/left-side-socials";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://anshu-portfolio-three.vercel.app/'),
+  metadataBase: new URL("https://anshu-portfolio-three.vercel.app/"),
   title: "Anshu Kumar | Full-Stack Developer & Innovator",
-  description: "Anshu Kumar, a skilled software developer, specializes in full stack and app development. Exploring new opportunities to contribute and innovate in tech.",
+  description:
+    "Anshu Kumar, a skilled software developer, specializes in full stack and app development. Exploring new opportunities to contribute and innovate in tech.",
   alternates: {
-    canonical: './',
+    canonical: "./",
   },
 };
 
@@ -23,31 +25,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <ViewTransitions>
-    // <motion.div
-    //   initial={{ opacity: 0 }}
-    //   animate={{ opacity: 1 }}
-    //   exit={{ opacity: 0 }}
-    //   transition={{ duration: 1.3 }}
-    // >
-      <html lang="en">
-        <body
-          className={`${inter.className} antialiased`}
+    <html lang="en">
+      <body className={`${inter.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange={false}
-          >
-            <Navbar />
-          
-            {children}
-            <Footer />
-          </ThemeProvider>
-        </body>
-      </html>
-    // </motion.div>
-    // {/* </ViewTransitions> */}
+          <CursorRevealBackground />
+          <LeftSideSocials />
+          <Navbar />
+
+          {children}
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

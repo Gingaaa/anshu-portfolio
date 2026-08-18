@@ -69,7 +69,7 @@ export default function Navbar() {
           px-4 md:px-6
           ${
             isScrolled
-              ? "max-w-5xl rounded-2xl border shadow-primary shadow-2xl"
+              ? "max-w-3xl rounded-2xl border shadow-primary shadow-2xl"
               : "max-w-full border-x-0 border-t-0"
           }
         `}

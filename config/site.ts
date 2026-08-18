@@ -1,4 +1,25 @@
 import { FaGithub, FaLinkedin, FaRss, FaInstagram } from "react-icons/fa";
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiGoogletagmanager,
+  SiShadcnui,
+  SiNodedotjs,
+  SiMongodb,
+  SiStrapi,
+  SiGraphql,
+  SiAmazonwebservices,
+  SiVercel,
+  SiFirebase,
+  SiGit,
+  SiGithub,
+  SiJest,
+  SiZod,
+  SiPostgresql,
+} from "react-icons/si";
 import { FaDownload, FaXTwitter } from "react-icons/fa6";
 import { MdComputer } from "react-icons/md";
 import { IoMdArrowForward, IoMdMail } from "react-icons/io";
@@ -29,108 +50,137 @@ export const siteConfig = {
   },
   skills: [
     {
-      name: "Languages",
-      list: [
+      id: "frontend",
+      title: "FRONTEND & UI",
+      subtitle: "Interface & Experience",
+      accent: "cyan",
+      items: [
         {
-          name: "Java",
+          name: "React",
+          description: "Component-based UI",
+          icon: SiReact,
         },
-        {
-          name: "HTML5",
-        },
-        {
-          name: "CSS3",
-        },
-        {
-          name: "Javascript",
-        },
-        {
-          name: "Typescript",
-        },
-        {
-          name: "Sass",
-        },
-      ],
-    },
-    {
-      name: "Frontend & UI",
-      list: [
         {
           name: "Next.js",
+          description: "Full-stack React framework",
+          icon: SiNextdotjs,
         },
         {
-          name: "React.js",
+          name: "TypeScript",
+          description: "Type-safe development",
+          icon: SiTypescript,
         },
         {
-          name: "Tailwind Css",
-        },
-        {
-          name: "Redux",
+          name: "Tailwind CSS",
+          description: "Utility-first styling",
+          icon: SiTailwindcss,
         },
         {
           name: "Zustand",
+          description: "Lightweight state management",
+          icon: SiGoogletagmanager,
         },
         {
-          name: "Shadecn UI",
-        },
-        {
-          name: "Zod",
-        },
-        {
-          name: "Jest",
-        },
-        {
-          name: "React query",
+          name: "Shadcn UI",
+          description: "Accessible UI system",
+          icon: SiShadcnui,
         },
       ],
     },
     {
-      name: "Backend & Database",
-      list: [
+      id: "backend",
+      title: "BACKEND & DATA",
+      subtitle: "APIs & Infrastructure",
+      accent: "green",
+      items: [
         {
-          name: "Rest API",
+          name: "Node.js",
+          description: "JavaScript runtime",
+          icon: SiNodedotjs,
         },
         {
-          name: "Nodejs",
+          name: "MongoDB",
+          description: "Document database",
+          icon: SiMongodb,
         },
         {
           name: "Strapi",
-        },
-        {
-          name: "Mongodb",
+          description: "Headless CMS",
+          icon: SiStrapi,
         },
         {
           name: "GraphQL",
+          description: "Flexible API queries",
+          icon: SiGraphql,
+        },
+        {
+          name: "Postgre SQL",
+          description: "Object Relational database",
+          icon: SiPostgresql,
         },
       ],
     },
     {
-      name: "Cloud & Services",
-      list: [
+      id: "cloud",
+      title: "CLOUD & SERVICES",
+      subtitle: "Deployment & Platforms",
+      accent: "purple",
+      items: [
         {
           name: "AWS",
+          description: "Cloud infrastructure",
+          icon: SiAmazonwebservices,
         },
         {
           name: "Vercel",
-        },
-        {
-          name: "Git",
+          description: "Frontend deployment",
+          icon: SiVercel,
         },
         {
           name: "Firebase",
+          description: "Backend services",
+          icon: SiFirebase,
         },
       ],
     },
     {
-      name: "Tools & Platforms",
-      list: [
+      id: "development",
+      title: "DEVELOPMENT",
+      subtitle: "Quality & Productivity",
+      accent: "orange",
+      items: [
         {
-          name: "VS Code",
+          name: "Jest",
+          description: "JavaScript testing",
+          icon: SiJest,
         },
         {
-          name: "IntelliJ IDEA",
+          name: "Zod",
+          description: "Schema validation",
+          icon: SiZod,
         },
         {
-          name: "Sublime",
+          name: "JavaScript",
+          description: "Modern ES development",
+          icon: SiJavascript,
+        },
+      ],
+    },
+    {
+      id: "version-control",
+      title: "VERSION CONTROL",
+      subtitle: "Collaboration & Workflow",
+      accent: "pink",
+      items: [
+        {
+          name: "Git",
+          description: "Version control",
+          icon: SiGit,
+        },
+        {
+          name: "GitHub",
+          description: "Code collaboration",
+          icon: SiGithub,
         },
       ],
     },
